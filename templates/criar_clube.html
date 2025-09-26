@@ -1,35 +1,34 @@
-<!doctype html>
-<html>
-    <body>
-        <form action="/clubes" method="POST">
-            <label for="name">Nome</label>
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Nome do clube"
-                required
-            />
+{% extends "layout.html" %}
 
-            <label for="description">Descrição</label>
-            <input
-                type="text"
-                id="description"
-                name="description"
-                placeholder="Nome do clube"
-                required
-            />
+{% block content%}
+    <form action="/clubes" method="POST">
+        <label for="name">Nome</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Nome do clube"
+            required
+        />
 
-            <label for="categories">Categorias</label>
-            <input
-                type="text"
-                id="categories"
-                name="categories"
-                placeholder="Nome do clube"
-                required
-            />
+        <label for="description">Descrição</label>
+        <input
+            type="text"
+            id="description"
+            name="description"
+            placeholder="Nome do clube"
+            required
+        />
 
-            <button type="submit">Criar</button>
-        </form>
-    </body>
-</html>
+        <label for="categories">Categorias</label>
+        <input
+            type="text"
+            id="categories"
+            name="categories"
+            placeholder="Nome do clube"
+            required
+        />
+
+        <button type="submit">Criar</button>
+    </form>
+{% endblock %}

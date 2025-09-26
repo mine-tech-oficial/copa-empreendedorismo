@@ -1,23 +1,22 @@
-<!doctype html>
-<html>
-    <body>
-        <a href="/clubes/criar">Criar um clube</a>
-        <form action="/clubes" method="get">
-            <label for="search">Pesquisa</label>
-            <input
-                id="search"
-                name="search"
-                type="search"
-                placeholder="Frase a ser pesquisada"
-            />
-            <button type="submit">Pesquisar</button>
-        </form>
-        {% for clube in clubes %}
-        <div>
-            <h2>{{ clube["name"] }}</h2>
-            <p>{{ clube["description"] }}</p>
-            <p>{{ clube["categories"] }}</p>
-        </div>
-        {% endfor %}
-    </body>
-</html>
+{% extends "layout.html" %}
+
+{% block content %}
+    <a href="/clubes/criar">Criar um clube</a>
+    <form action="/clubes" method="get">
+        <label for="search">Pesquisa</label>
+        <input
+            id="search"
+            name="search"
+            type="search"
+            placeholder="Frase a ser pesquisada"
+        />
+        <button type="submit">Pesquisar</button>
+    </form>
+    {% for clube in clubes %}
+    <div>
+        <h2>{{ clube["name"] }}</h2>
+        <p>{{ clube["description"] }}</p>
+        <p>{{ clube["categories"] }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}
