@@ -1,0 +1,87 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(270deg, #6a0dad, #ff69b4, #2575fc); /* roxo → rosa → azul */
+    background-size: 400% 400%;
+    color: white;
+    animation: gradientAnimation 32s ease infinite; /* animação mais rápida */
+}
+
+/* Animação do gradiente */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Main ocupa a tela inteira */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Título */
+header h1 {
+    font-size: 3rem;
+    margin-top: 20px;
+}
+
+/* Frase de apresentação centralizada e maior */
+.middle {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.presentation {
+    font-size: 1.4rem;
+    max-width: 700px;
+    line-height: 1.6;
+}
+
+/* Link para clubes, sem container branco */
+.clubes-link {
+    margin-bottom: 40px;
+}
+
+.clubes-link a {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #6a0dad, #ff69b4, #2575fc);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.clubes-link a:hover {
+    background-color: transparent;
+    color: #2575fc;
+    border: 2px solid #2575fc;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    background-color: rgba(0,0,0,0.3);
+}

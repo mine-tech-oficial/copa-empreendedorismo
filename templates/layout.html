@@ -1,15 +1,23 @@
 <!doctype html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Título a definir{% endblock %}</title>
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Título a definir{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <body>
-        <main>{% block content %} {% endblock %}</main>
 
-        <footer>
-            <p>&copy; 2025 - All rights reserved.</p>
-        </footer>
-    </body>
+</head>
+<body>
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - All rights reserved.</p>
+    </footer>
+</body>
 </html>
