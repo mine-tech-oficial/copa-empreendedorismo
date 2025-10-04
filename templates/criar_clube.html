@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 
 {% block content%}
-    <form action="/clubes" method="POST">
-        <label for="name">Nome</label>
+    <form action="/clubes" method="POST" class="criar-clube-form">
+        <label for="name">Nome:</label>
         <input
             type="text"
             id="name"
@@ -11,24 +11,24 @@
             required
         />
 
-        <label for="description">Descrição</label>
+        <label for="description">Descrição:</label>
         <input
             type="text"
             id="description"
             name="description"
-            placeholder="Nome do clube"
+            placeholder="Descrição do clube"
             required
         />
 
-        <label for="categories">Categorias</label>
+        <label for="categories">Categorias:</label>
         <input
             type="text"
             id="categories"
             name="categories"
-            placeholder="Nome do clube"
+            placeholder="Categorias"
             required
         />
 
-        <button type="submit">Criar</button>
+        <button type="submit" class="btn-criar-clube">Criar</button>
     </form>
 {% endblock %}
