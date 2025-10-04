@@ -5,13 +5,13 @@
     box-sizing: border-box;
 }
 
-body {
+body{
     font-family: Arial, sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-   background: linear-gradient(
-        180deg, 
+    background: linear-gradient(
+        130deg, 
         #2575fc 0%,
         #5e86ff 10%,
         #a67aff 30%,
