@@ -12,12 +12,11 @@ body{
     flex-direction: column;
     background: linear-gradient(
         130deg, 
-        #2575fc 0%,
-        #5e86ff 10%,
-        #a67aff 30%,
-        #c080ff 50%, 
-        #ff5db9 70%,
-        #f940a2 100%
+        #4b0082 0%, 
+        #6a0dad 25%,  
+        #8a2be2 50%,  
+        #b266ff 75%,  
+        #d8b4fe 100%
     );
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -69,7 +68,7 @@ header h1 {
     display: inline-block;
     padding: 12px 30px;
     border-radius: 8px;
-    background: linear-gradient(135deg, #6a0dad, #ff69b4, #2575fc);
+    background: linear-gradient(135deg,#4b0082, #6a0dad,#b266ff);
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -79,8 +78,8 @@ header h1 {
 
 .clubes-link a:hover {
     background-color: transparent;
-    color: #2575fc;
-    border: 2px solid #2575fc;
+    color: #6a0dad;
+    border: 2px solid #6a0dad;
 }
 
 footer {
@@ -100,7 +99,7 @@ footer {
 }
 
 .clube-card{
-    background-color: #2575fc;
+    background-color: #6a0dad;
     border-radius: 10px;
     padding: 24px;
     min-height: 180px;
@@ -122,7 +121,7 @@ footer {
 
 .clube-categorias{
     font-size:14px;
-    color:#022258
+    color:#2e014f
 }
 
 .avizo-vazio{
@@ -140,7 +139,7 @@ footer {
     max-width: 400px;
     margin: 50px auto;
     padding:20px;
-    background-color: #2575fc;
+    background-color: #6a0dad;
     border-radius: 10px;
     box-shadow:0 4px 12px rgba(0,0,0,0.3);
     color:white
@@ -162,21 +161,21 @@ footer {
     border-radius:8px;
     border:none;
     background-color:#fbfbfb;
-    color:#4a9df7;
+    color:#b10aff;
     font-weight:bold;
     cursor:pointer;
     transition: background-color 0.3s;
 }
 
 .btn-criar-clube:hover {
-  background-color: #0056b3;
+  background-color: #2e014f;
 }
 
 .btn-criar-link{
     display: inline-block;
     padding: 10px 20px;
     border-radius: 8px;
-    background:#2575fc;
+    background:#6a0dad;
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -185,7 +184,7 @@ footer {
 }
 
 .btn-criar-link:hover{
-    background-color:#0056b3;
+    background-color:#2e014f;
 }
 
 .search-bar{
@@ -208,7 +207,7 @@ footer {
 .search-btn{
     padding: 10px 15px;
     border:none;
-    background-color:#2575fc;
+    background-color:#6a0dad;
     color:white;
     font-size:16px;
     cursor:pointer;
@@ -217,5 +216,5 @@ footer {
 }
 
 .search-btn:hover{
-    background-color:#0056b3;
+    background-color:#2e014f;
 }
