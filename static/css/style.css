@@ -10,10 +10,20 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(270deg, #6a0dad, #ff69b4, #2575fc); 
-    background-size: 400% 400%;
+   background: linear-gradient(
+        180deg, 
+        #f940a2 0%, 
+        #ff5db9 10%,
+        #db6eff 30%,
+        #c080ff 40%, 
+        #a67aff 50%,
+        #5e86ff 70%,
+        #2575fc 100% 
+    );
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: white;
-    animation: gradientAnimation 32s ease infinite; 
 }
 
 @keyframes gradientAnimation {
