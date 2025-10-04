@@ -12,18 +12,17 @@ body {
     flex-direction: column;
    background: linear-gradient(
         180deg, 
-        #f940a2 0%, 
-        #ff5db9 10%,
-        #db6eff 30%,
-        #c080ff 40%, 
-        #a67aff 50%,
-        #5e86ff 70%,
-        #2575fc 100% 
+        #2575fc 0%,
+        #5e86ff 10%,
+        #a67aff 30%,
+        #c080ff 50%, 
+        #ff5db9 70%,
+        #f940a2 100%
     );
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    color: white;
+    color:white
 }
 
 @keyframes gradientAnimation {
