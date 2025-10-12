@@ -14,14 +14,14 @@ body{
         130deg, 
         #4b0082 0%, 
         #6a0dad 25%,  
-        #8a2be2 50%,  
-        #b266ff 75%,  
-        #d8b4fe 100%
+        #d8b4fe 50%,  
+        #786cf9 75%,  
+        #5855ea 100%
     );
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    color:white
+    color:rgb(0, 0, 0)
 }
 
 @keyframes gradientAnimation {
@@ -68,7 +68,7 @@ header h1 {
     display: inline-block;
     padding: 12px 30px;
     border-radius: 8px;
-    background: linear-gradient(135deg,#4b0082, #6a0dad,#b266ff);
+    background: linear-gradient(135deg,#4b0082, #6a0dad,#b266ff,#aea7f8,#8277f8,#441bf9);
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -217,4 +217,55 @@ footer {
 
 .search-btn:hover{
     background-color:#2e014f;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background-color: linear-gradient(135deg,#4b0082, #6a0dad,#b266ff,#aea7f8,#8277f8,#441bf9);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:1.8rem;
+    font-weight:bold;
+    color:rgb(8, 8, 8);
+    text-decoration:none;
+    letter-spacing:1px;
+}
+
+.nav-links{
+    list-style:none;
+    display:flex;
+    gap:30px;
+    margin:0;
+    padding:0;
+}
+
+.nav-links a{
+    color:rgb(10, 10, 10);
+    text-decoration:none;
+    font-weight:500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover{
+    color:#b10aff;
+}
+
+@media(max-width:768px){
+    .navbar{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .nav-links{
+        flex-direction:column;
+        width:100%;
+        gap:10px;
+    }
 }
