@@ -1,30 +1,35 @@
 <!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8" />
-    <title>{% block title %}Título a definir{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Título a definir{% endblock %}</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
+        />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo">Nome a definir</div>
+                <ul class="nav-links">
+                    <li><a href="/">Início</a></li>
+                    <li><a href="/clubes">Clubes</a></li>
+                    {% if current_user.is_authenticated %}
+                    <li><a href="/clubes/criar">Criar Clube</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="/sign_up">Criar Conta</a></li>
+                    <li><a href="/login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
 
+        <main>{% block content %}{% endblock %}</main>
 
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-             <div class="logo">Nome a definir</div>
-            <ul class="nav-links">
-                <li><a href="/">Início</a></li>
-                <li><a href="/clubes">Clubes</a></li>
-                <li><a href="/clubes/criar">Criar Clube</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-
-    <footer>
-        <p>&copy; 2025 - All rights reserved.</p>
-    </footer>
-</body>
+        <footer>
+            <p>&copy; 2025 - All rights reserved.</p>
+        </footer>
+    </body>
 </html>

@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    {% if current_user.is_authenticated %}
     <a href="/clubes/criar" class="btn-criar-link">Criar um clube</a>
+    {% endif %}
     <form action="/clubes" method="get" class="search-bar">
         <input
             id="search"
