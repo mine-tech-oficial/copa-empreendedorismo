@@ -16,11 +16,11 @@
     <main class="clube-lista">
         {% for clube in clubes %}
             {% if clube["name"].strip() or clube["description"].strip() or clube["categories"].strip() %}
-                <div class="clube-card">
+                <a class="clube-card" href='/clubes/{{ clube["id"] }}'>
                     <h2 class="clube-name">{{ clube["name"] }}</h2>
                     <p class="clube-descricao">{{ clube["description"] }}</p>
                     <p class="clube-categorias">{{ clube["categories"] }}</p>
-                </div>
+                </a>
             {% endif %}
         {% else %}
             <p class="aviso-vazio">Nenhum clube encontrado.</p>

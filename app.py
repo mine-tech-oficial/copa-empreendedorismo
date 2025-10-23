@@ -3,7 +3,14 @@ from typing import override
 from uuid import uuid4
 from icecream import ic
 from flask import Flask, abort, redirect, render_template, request
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
+from flask_login import (
+    LoginManager,
+    UserMixin,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
 from werkzeug.security import check_password_hash, generate_password_hash
 import csv
 
@@ -58,40 +65,40 @@ def hello_world():
 
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        if username is None or password is None:
-            return abort(400)  # TODO: Put correct code
-        if User.get_by_username(username) is not None:
-            return abort(400)  # TODO: Render error form
-        hashed_password = generate_password_hash(password)
-        id = uuid4()
-        with open("users.csv", mode="a", encoding="utf-8") as csv_file:
-            csv_writer = csv.writer(csv_file)
-            csv_writer.writerow([id, username, hashed_password])
-        if not login_user(User(id, username, hashed_password)):
-            return abort(400)  # TODO: Put correct code
-        return redirect("/")
-    else:
+    if request.method == "GET":
         return render_template("sign_up.html")
+
+    username = request.form.get("username")
+    password = request.form.get("password")
+    if username is None or password is None:
+        return abort(400)  # TODO: Put correct code
+    if User.get_by_username(username) is not None:
+        return abort(400)  # TODO: Render error form
+    hashed_password = generate_password_hash(password)
+    id = uuid4()
+    with open("users.csv", mode="a", encoding="utf-8") as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow([id, username, hashed_password])
+    if not login_user(User.get_by_username(username)):
+        return abort(400)  # TODO: Put correct code
+    return redirect("/")
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        if username is None or password is None:
-            return abort(400)  # TODO: Put correct code
-        user = User.get_by_username(username)
-        if user is None or not check_password_hash(user.hashed_password, password):
-            return abort(400)  # TODO: Render error form
-        if not login_user(user):
-            return abort(400)  # TODO: Put correct code
-        return redirect("/")
-    else:
+    if request.method == "GET":
         return render_template("login.html")
+
+    username = request.form.get("username")
+    password = request.form.get("password")
+    if username is None or password is None:
+        return abort(400)  # TODO: Put correct code
+    user = User.get_by_username(username)
+    if user is None or not check_password_hash(user.hashed_password, password):
+        return abort(400)  # TODO: Render error form
+    if not login_user(user):
+        return abort(400)  # TODO: Put correct code
+    return redirect("/")
 
 
 @app.route("/logout")
@@ -122,27 +129,64 @@ def clubes():
     return render_template("clubes.html", clubes=lista_clubes)
 
 
+@app.route("/clubes/<id>", methods=["GET", "POST"])
+def clube(id: str):
+    clube = None
+    eventos = []
+
+    with open("clubes.csv", mode="r", encoding="utf-8") as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            if id == row["id"]:
+                clube = row
+
+    with open("eventos.csv", mode="r", encoding="utf-8") as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            if id == row["club_id"]:
+                eventos.append(row)
+
+    if request.method == "GET":
+        return render_template("clube.html", clube=clube, eventos=eventos)
+
+    if not current_user.is_authenticated or current_user.id != clube["creator_id"]:
+        abort(400)  # TODO: Put correct code
+
+    id = uuid4()
+    name = request.form.get("name")
+    place = request.form.get("place")
+    datetime = request.form.get("datetime")  # TODO: Represent as actual datetime
+
+    data = [id, name, place, datetime, clube["id"]]
+
+    with open("eventos.csv", mode="a", encoding="utf-8", newline="") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(data)
+
+    return redirect("/clubes/" + clube["id"])
+
+
 @app.route("/clubes/criar", methods=["GET", "POST"])
 @login_required
 def criar_clubes():
     if request.method == "GET":
         return render_template("criar_clube.html")
 
+    if not current_user.is_authenticated:
+        abort(400)  # TODO: Put correct code
+
+    id = uuid4()
     name = request.form.get("name")
     description = request.form.get("description")
     categories = request.form.get("categories")
 
-    print(name)
-    print(description)
-    print(categories)
-
-    data = [name, description, categories]
+    data = [id, name, description, categories, current_user.id]
 
     with open("clubes.csv", mode="a", encoding="utf-8", newline="") as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(data)
 
-    return render_template("clubes.html")
+    return redirect("/clubes")
 
 
 if __name__ == "__main__":

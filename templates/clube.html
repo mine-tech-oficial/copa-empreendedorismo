@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    {% if clube is not none %}
+        <h2>{{ clube["name"] }}</h2>
+        <p>{{ clube["description"] }}</p>
+        <p>{{ clube["categories"] }}</p>
+        <div>
+            {% for evento in eventos %}
+                <div>
+                    <h3>{{ evento["name"] }}</h3>
+                    <p>{{ evento["place"] }}</p>
+                    <p>{{ evento["datetime"] }}</p>
+                </div>
+            {% else %}
+                <p>Nenhum evento</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="aviso-vazio">Clube não encontrado.</p>
+    {% endif %}
+    {% if current_user.is_authenticated and current_user.id == clube["creator_id"] %}
+        <form action='/clubes/{{ clube["id"] }}' method="POST" class="criar-clube-form">
+            <label for="name">Nome:</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Nome do evento"
+                required
+            />
+
+            <label for="place">Lugar:</label>
+            <input
+                type="text"
+                id="place"
+                name="place"
+                placeholder="Lugar do evento"
+                required
+            />
+
+            <label for="datetime">Data e hora:</label>
+            <input
+                type="text"
+                id="datetime"
+                name="datetime"
+                placeholder="Data e hora do evento"
+                required
+            />
+
+            <button type="submit">Criar</button>
+        </form>
+    {% endif %}
+{% endblock %}
