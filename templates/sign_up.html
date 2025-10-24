@@ -1,9 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<form action="/sign_up" method="post">
-    <input name="username" type="text" required />
-    <input name="password" type="password" required />
-    <button type="submit">Login</button>
+<form action="/sign_up" method="post" class="form1">
+    <input
+        name="username" 
+        type="text" required 
+        placeholder="Username"
+        />
+    <input 
+        name="password"
+        type="password" required
+        placeholder="Password"
+        />
+    <button type="submit">Sign Up</button>
 </form>
 {% endblock %}

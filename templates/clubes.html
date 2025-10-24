@@ -2,9 +2,9 @@
 
 {% block content %}
     {% if current_user.is_authenticated %}
-    <a href="/clubes/criar" class="btn-criar-link">Criar um clube</a>
+        <a href="/clubes/criar" class="btn-criar-link">Criar um clube</a>
     {% endif %}
-    <form action="/clubes" method="get" class="search-bar">
+    <div class="search-wrapper">
         <input
             id="search"
             name="search"
@@ -12,14 +12,16 @@
             placeholder="Pesquisar clubes..."
         />
         <button type="submit" class="search-btn">🔍</button>
-    </form>
+    </div>
+
+
     <main class="clube-lista">
         {% for clube in clubes %}
             {% if clube["name"].strip() or clube["description"].strip() or clube["categories"].strip() %}
                 <a class="clube-card" href='/clubes/{{ clube["id"] }}'>
-                    <h2 class="clube-name">{{ clube["name"] }}</h2>
-                    <p class="clube-descricao">{{ clube["description"] }}</p>
-                    <p class="clube-categorias">{{ clube["categories"] }}</p>
+                    <h2 class="clube-name">Nome:{{ clube["name"] }}</h2>
+                    <p class="clube-descricao">Descrição: {{ clube["description"] }}</p>
+                    <p class="clube-categorias">Categorias: {{ clube["categories"] }}</p>
                 </a>
             {% endif %}
         {% else %}
