@@ -76,7 +76,7 @@ def sign_up():
         return abort(400)  # TODO: Render error form
     hashed_password = generate_password_hash(password)
     id = uuid4()
-    with open("users.csv", mode="a", encoding="utf-8") as csv_file:
+    with open("users.csv", mode="a", encoding="utf-8", newline="") as csv_file:
         csv_writer = csv.writer(csv_file)
         csv_writer.writerow([id, username, hashed_password])
     if not login_user(User.get_by_username(username)):
@@ -145,9 +145,21 @@ def clube(id: str):
         for row in csv_reader:
             if id == row["club_id"]:
                 eventos.append(row)
+                eventos[-1]["user_confirmed"] = False
+
+    with open("confirmed.csv", mode="r", encoding="utf-8") as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            if current_user.id == row["user_id"]:
+                for evento in eventos:
+                    if evento["id"] == row["event_id"]:
+                        evento["user_confirmed"] = True
 
     if request.method == "GET":
         return render_template("clube.html", clube=clube, eventos=eventos)
+
+    if clube is None:
+        abort(404)
 
     if not current_user.is_authenticated or current_user.id != clube["creator_id"]:
         abort(400)  # TODO: Put correct code
@@ -164,6 +176,44 @@ def clube(id: str):
         writer.writerow(data)
 
     return redirect("/clubes/" + clube["id"])
+
+
+@app.route("/clubes/confirmar/<event_id>")
+@login_required
+def confirm(event_id: str):
+    clube_id = None
+    eventos = []
+
+    with open("eventos.csv", mode="r", encoding="utf-8") as csv_file:
+        csv_reader = csv.reader(csv_file)
+        for row in csv_reader:
+            if event_id == row[0]:
+                clube_id = row[-1]
+            eventos.append(row)
+
+    if clube_id is None:
+        abort(404)
+
+    with open("confirmed.csv", mode="r", encoding="utf-8") as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            print(row)
+            print(current_user.id)
+            if event_id == row["event_id"] and current_user.id == row["user_id"]:
+                return redirect("/clubes/" + clube_id)
+
+    with open("eventos.csv", mode="w", encoding="utf-8") as csv_file:
+        csv_writer = csv.writer(csv_file)
+        for evento in eventos:
+            if evento[-1] == clube_id:
+                evento[-2] = str(int(evento[-2]) + 1)
+            csv_writer.writerow(evento)
+
+    with open("confirmed.csv", mode="a", encoding="utf-8", newline="") as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow([event_id, current_user.id])
+
+    return redirect("/clubes/" + clube_id)
 
 
 @app.route("/clubes/criar", methods=["GET", "POST"])

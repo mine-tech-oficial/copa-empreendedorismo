@@ -1,2 +1,2 @@
-id,name,place,datetime,club_id
-
+id,name,place,datetime,confirmed,club_id
+e7ac2568-f003-4c98-be35-90d7c2bf4e77,Partida,Minha casa,10/10/10,1,321fe46d-5c3b-4d76-b8a9-6340e5eab851

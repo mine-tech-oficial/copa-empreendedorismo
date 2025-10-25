@@ -11,6 +11,10 @@
                     <h3>Nome: {{ evento["name"] }}</h3>
                     <p>Lugar: {{ evento["place"] }}</p>
                     <p>Data e hora: {{ evento["datetime"] }}</p>
+                    <p>Confirmados: {{ evento["confirmed"] }}</p>
+                    {% if not evento.user_confirmed %}
+                        <a href='/clubes/confirmar/{{ evento["id"] }}'>Confirmar presença</a>
+                    {% endif %}
                 </div>
             {% else %}
                 <p>Nenhum evento</p>
