@@ -2,24 +2,27 @@
 
 {% block content %}
     {% if clube is not none %}
-        <h2>Nome: {{ clube["name"] }}</h2>
-        <p>Descrição: {{ clube["description"] }}</p>
-        <p>Categorias:</strong> <span class="clube-categorias1">{{ clube["categories"] }}</p>
-        <div>
-            {% for evento in eventos %}
-                <div>
-                    <h3>Nome: {{ evento["name"] }}</h3>
-                    <p>Lugar: {{ evento["place"] }}</p>
-                    <p>Data e hora: {{ evento["datetime"] }}</p>
-                    <p>Confirmados: {{ evento["confirmed"] }}</p>
-                    {% if not evento.user_confirmed %}
-                        <a href='/clubes/confirmar/{{ evento["id"] }}'>Confirmar presença</a>
-                    {% endif %}
-                </div>
-            {% else %}
-                <p>Nenhum evento</p>
-            {% endfor %}
-        </div>
+        <div class="clube-info">
+            <h2>Nome: {{ clube["name"] }}</h2>
+            <p>Descrição: {{ clube["description"] }}</p>
+            <p>Categorias: <em>{{ clube["categories"] }}</em></p>
+
+            <div class="eventos-clube">
+                <h3>Eventos disponíveis:</h3>
+                {% for evento in eventos %}
+                    <div class="evento-item">
+                        <h4>{{ evento["name"] }}</h4>
+                        <p>Lugar: {{ evento["place"] }}</p>
+                        <p>Data e hora: {{ evento["datetime"] }}</p>
+                        <p>Confirmados: {{ evento["confirmed"] }}</p>
+                        {% if not evento.user_confirmed %}
+                            <a href='/clubes/confirmar/{{ evento["id"] }}'>Confirmar presença</a>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <p>Nenhum evento</p>
+                {% endfor %}
+            </div>
     {% else %}
         <p class="aviso-vazio">Clube não encontrado.</p>
     {% endif %}
@@ -55,4 +58,5 @@
             <button type="submit" class="btn-criar-clube">Criar</button>
         </form>
     {% endif %}
+        </div>
 {% endblock %}

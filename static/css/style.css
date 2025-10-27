@@ -68,7 +68,7 @@ header h1 {
     display: inline-block;
     padding: 12px 30px;
     border-radius: 8px;
-    background: linear-gradient(135deg,#4b0082, #6a0dad,#b266ff,#aea7f8,#8277f8,#441bf9);
+    background: linear-gradient(135deg,#4b0082, #6a0dad,#d8b4fe,#786cf9,#5855ea);
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -148,6 +148,34 @@ footer {
     font-style:italic;
     color:black;
     
+}
+.clube-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* menos espaço entre os itens */
+    padding: 10px 0;
+}
+
+.clube-info h2,
+.clube-info p {
+    margin: 0; /* remove margens padrão */
+}
+
+.eventos-clube {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.eventos-clube p {
+    margin: 0;
+    font-style: italic;
+    color: #666;
+}
+
+.criar-evento {
+    margin-top: 15px;
 }
 .avizo-vazio{
     text-align:center;
@@ -243,24 +271,28 @@ footer {
     background-color:#2e014f;
 }
 
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-    background-color: linear-gradient(135deg,#4b0082, #6a0dad,#b266ff,#aea7f8,#8277f8,#441bf9);
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: linear-gradient(135deg,#4b0082, #6a0dad,#d8b4fe,#786cf9,#5855ea);
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    position:sticky;
-    top:0;
-    z-index:1000;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 80px;
 }
 
-.logo{
-    font-size:1.8rem;
-    font-weight:bold;
-    color:rgb(8, 8, 8);
-    text-decoration:none;
-    letter-spacing:1px;
+.logo {
+    height: 100%; 
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 150px;
+    width: auto;
 }
 
 .nav-links{
