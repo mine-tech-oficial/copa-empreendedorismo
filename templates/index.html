@@ -1,21 +1,74 @@
 {% extends "layout.html" %}
 
-{% block title %}Página Inicial{% endblock %}
+{% block title %}ConnectUs — Encontre seu clube{% endblock %}
 
 {% block content %}
-<header>
-    <h1>ConnectUs</h1>
-</header>
+<main class="home-main">
 
-<div class="middle">
-    <p class="presentation">
-        Bem-vindo ao ConnectUs! Aqui conectamos pessoas com interesses comuns em eventos
-        locais e online, promovendo experiências únicas e oportunidades de aprendizado,
-        networking e diversão. Explore, participe e descubra novos grupos que combinam com você!
+  <!-- HERO -->
+  <section class="hero hero-no-image">
+    <div class="hero-left">
+      <p class="eyebrow">ConnectUs</p>
+
+      <h1 class="hero-title">
+        Conecte-se com pessoas que compartilham o que faz seu
+        <span class="accent">coração vibrar</span>
+      </h1>
+
+      <p class="hero-sub">
+        Encontre seu lugar em clubes temáticos, faça amizades reais e participe
+        de eventos locais que transformam conexões digitais em experiências inesquecíveis.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="/sign_up" class="btn-primary">Criar conta</a>
+        <a href="/clubes" class="btn-outline">Explorar clubes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="problem">
+    <h2 class="problem-title">
+      A solidão nas grandes cidades é real
+    </h2>
+
+    <p class="problem-subtitle">
+      Mesmo cercados de pessoas, muitos se sentem isolados.<br>
+      ConnectUs transforma isso.
     </p>
-</div>
 
-<div class="clubes-link">
-    <a href="/clubes">Ver clubes disponíveis</a>
-</div>
+    <div class="features">
+
+      <div class="feature-card">
+        <div class="feature-icon">💜</div>
+        <h4>Solidão crescente</h4>
+        <p>
+          Pesquisas mostram que 1 em cada 3 pessoas nas grandes cidades
+          se sente sozinha regularmente.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h4>Conexões superficiais</h4>
+        <p>
+          Redes sociais conectam, mas não criam amizades reais
+          baseadas em interesses genuínos.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h4>Falta de comunidade local</h4>
+        <p>
+          Difícil encontrar pessoas com interesses similares
+          perto de você para encontros reais.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
 {% endblock %}

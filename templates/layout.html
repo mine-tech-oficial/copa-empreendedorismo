@@ -19,10 +19,10 @@
                     <li><a href="/clubes">Clubes</a></li>
                     {% if current_user.is_authenticated %}
                     <li><a href="/clubes/criar">Criar Clube</a></li>
-                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/logout" class="btn-primary">Logout</a></li>
                     {% else %}
                     <li><a href="/sign_up">Criar Conta</a></li>
-                    <li><a href="/login">Login</a></li>
+                    <li><a href="/login" class="btn-primary">Login</a></li>
                     {% endif %}
                 </ul>
             </nav>

@@ -1,17 +1,18 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<form action="/sign_up" method="post" class="form1">
-    <input
-        name="username" 
-        type="text" required 
-        placeholder="Username"
-        />
-    <input 
-        name="password"
-        type="password" required
-        placeholder="Password"
-        />
-    <button type="submit">Sign Up</button>
-</form>
+<div class="auth-container">
+    <a href="/" class="back-link">← Voltar</a>
+
+    <form action="/sign_up" method="post" class="auth-card">
+        <h1>Criar conta</h1>
+
+        <input name="username" type="text" required placeholder="Username" />
+        <input name="password" type="password" required placeholder="Password" />
+
+        <button type="submit" class="auth-btn">Criar conta</button>
+
+        <p class="swap-text">Já tem conta? <a href="/login">Entrar</a></p>
+    </form>
+</div>
 {% endblock %}
