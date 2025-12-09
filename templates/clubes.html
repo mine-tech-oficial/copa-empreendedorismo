@@ -45,13 +45,16 @@
     {% if clubes %}
         {% for clube in clubes %}
             <a class="clube-card" href="/clubes/{{ clube['id'] }}">
-                <h2 class="clube-name">{{ clube['name'] }}</h2>
-                <p class="clube-descricao">{{ clube['description'] }}</p>
-
-                <div class="tags-container">
-                    {% for cat in clube['categories'].split(',') %}
-                        <span class="tag">{{ cat.strip() }}</span>
-                    {% endfor %}
+                <img class="clube-image" src="{{ url_for('static', filename='assets/clubes/' + clube['id'] + '.jpg') }}"/>
+                <div class="clube-contents">
+                    <h2 class="clube-name">{{ clube['name'] }}</h2>
+                    <p class="clube-descricao">{{ clube['description'] }}</p>
+    
+                    <div class="tags-container">
+                        {% for cat in clube['categories'].split(',') %}
+                            <span class="tag">{{ cat.strip() }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
             </a>
         {% endfor %}
