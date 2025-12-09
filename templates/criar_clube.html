@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content%}
-    <form action="/clubes/criar" method="POST" class="criar-clube-form">
+    <form action="/clubes/criar" method="POST" class="criar-clube-form" enctype="multipart/form-data">
         <label for="name">Nome:</label>
         <input
             type="text"
@@ -17,6 +17,15 @@
             id="description"
             name="description"
             placeholder="Descrição do clube"
+            required
+        />
+        
+        <label for="image">Imagem:</label>
+        <input
+            type="file"
+            id="image"
+            name="image"
+            placeholder="Imagem do clube"
             required
         />
 

@@ -165,7 +165,7 @@ def clube(id: str):
     if not current_user.is_authenticated or current_user.id != clube["creator_id"]:
         abort(400)  # TODO: Put correct code
 
-    id = uuid4()
+    id = str(uuid4())
     name = request.form.get("name")
     place = request.form.get("place")
     datetime = request.form.get("datetime")  # TODO: Represent as actual datetime
@@ -226,10 +226,14 @@ def criar_clubes():
     if not current_user.is_authenticated:
         abort(400)  # TODO: Put correct code
 
-    id = uuid4()
+    id = str(uuid4())
     name = request.form.get("name")
     description = request.form.get("description")
     categories = request.form.get("categories")
+    image = request.files.get("image")
+
+    if image:
+        image.save("static/assets/clubes/" + id + ".jpg")
 
     data = [id, name, description, categories, current_user.id]
 
