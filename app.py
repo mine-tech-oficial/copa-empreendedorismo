@@ -1,7 +1,8 @@
+import csv
 import os
 from typing import override
 from uuid import uuid4
-from icecream import ic
+
 from flask import Flask, abort, redirect, render_template, request
 from flask_login import (
     LoginManager,
@@ -11,8 +12,8 @@ from flask_login import (
     login_user,
     logout_user,
 )
+from icecream import ic
 from werkzeug.security import check_password_hash, generate_password_hash
-import csv
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "dev")
@@ -169,7 +170,7 @@ def clube(id: str):
     place = request.form.get("place")
     datetime = request.form.get("datetime")  # TODO: Represent as actual datetime
 
-    data = [id, name, place, datetime, clube["id"]]
+    data = [id, name, place, datetime, 0, clube["id"]]
 
     with open("eventos.csv", mode="a", encoding="utf-8", newline="") as csv_file:
         writer = csv.writer(csv_file)
